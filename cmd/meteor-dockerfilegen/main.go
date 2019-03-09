@@ -80,7 +80,7 @@ RUN curl -o $TMP_DIR/meteor.sh 'https://install.meteor.com?release={{.MeteorVers
 ENV PATH="/home/node/.meteor:${PATH}"
 WORKDIR $SRC_DIR
 RUN meteor npm install --production
-RUN meteor build --directory $BUNDLE_DIR
+RUN meteor build --server-only --directory $BUNDLE_DIR
 RUN cd ${BUNDLE_DIR}/bundle/programs/server && npm install
 
 FROM node:{{.NodeVersion}}{{if .SlimBase}}-slim{{end}}
